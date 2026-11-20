@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IA privada en 3 niveles — tu IA, en tu máquina, conectada todo el tiempo</title>
+<meta name="description" content="Kit gratuito de INEMA: elige el modelo de IA adecuado para tu máquina (normal o sin censura), ejecútalo todo localmente y úsalo desde el celular con Tailscale, sin abrir puertos en internet. Con velocidades medidas.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/ia-privada-3-niveis/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/ia-privada-3-niveis/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/ia-privada-3-niveis/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:1000px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+</style>
+<style>
+  .quad{display:grid;grid-template-columns:120px 1fr 1fr;gap:10px;margin-top:8px}
+  .quad .h{font-family:Sora;font-weight:600;font-size:.8rem;color:var(--mut);display:flex;align-items:center;justify-content:center;text-align:center;padding:6px}
+  .quad .q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .quad .q b{display:block;font-family:Sora;font-size:.95rem;margin-bottom:.3em}
+  .quad .q span{color:var(--mut);font-size:.88rem}
+  .quad .q.kit{border-color:var(--amb)}
+  .quad .q.kit b::after{content:" · este kit";color:var(--amb);font-weight:600;font-size:.78rem}
+  @media(max-width:620px){.quad{grid-template-columns:1fr}.quad .h.c{display:none}.quad .h.r{justify-content:flex-start;padding-top:14px}}
+  .bars{display:grid;gap:12px;margin-top:6px}
+  .bar{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr) 90px;gap:12px;align-items:center}
+  .bar .l{font-size:.88rem}
+  .bar .l small{display:block;color:var(--mut);font-size:.8rem}
+  .bar .t{background:var(--bg2);border:1px solid var(--line);border-radius:999px;height:16px;overflow:hidden}
+  .bar .t i{display:block;height:100%;background:var(--amb);border-radius:999px}
+  .bar .t i.cpu{background:var(--mut)}
+  .bar .v{font-family:Sora;font-weight:800;font-size:.95rem;text-align:right}
+  @media(max-width:620px){.bar{grid-template-columns:1fr 70px}.bar .t{grid-column:1/-1;order:3}}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;color:var(--mut);font-size:.85rem;margin-top:16px}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  table{border-collapse:collapse;width:100%;font-size:.9rem}
+  th,td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
+  th{font-family:Sora;font-size:.82rem;color:var(--mut)}
+  .tbl{overflow-x:auto} .tbl table{min-width:600px} .tbl td code{overflow-wrap:normal;white-space:nowrap}
+  body.light nav{background:rgba(246,247,249,.88)}
+  .warn{border-left:3px solid var(--amb);background:var(--card);border-radius:0 12px 12px 0;padding:14px 18px;margin:18px 0}
+  ul.rules{margin:0;padding-left:1.2em;color:var(--mut)} ul.rules li{margin:.45em 0} ul.rules b{color:var(--txt)}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🔒</span> IA privada</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#video">Video</a>
+    <a class="sec" href="#simples">Para nuevos usuarios</a>
+    <a class="sec" href="#oque">Qué es</a>
+    <a class="sec" href="#quadrante">Cuadrante</a>
+    <a class="sec" href="#numeros">Números</a>
+    <a class="sec" href="#guia">Guía de uso</a>
+    <a class="sec" href="#seguranca">Seguridad</a>
+    <span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class="on" href="./">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/ia-privada-3-niveis" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Kit gratuito · privada · local · 24 h</span>
+      <h1>Tu IA, en tu máquina, <span class="amb">conectada todo el tiempo</span></h1>
+      <p class="lead">Lo que preguntas no sale de tu computadora y puedes usarla desde el celular desde cualquier lugar sin abrir puertos en internet.</p>
+      <div class="cta">
+        <a class="btn" href="#guia">Empezar la guía</a>
+        <a class="btn ghost" href="https://github.com/inematds/ia-privada-3-niveis" target="_blank" rel="noopener">Ver en GitHub</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-es.jpg" alt="Banner: tu IA privada — local, sin censura y conectada 24 h"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">En resumen</span>
+  <p>Este es un kit gratuito para ejecutar un modelo de IA abierto en tu propia computadora, sin enviar tus datos a ninguna empresa. Sirve para quienes manejan información sensible (exámenes, contratos, finanzas, registros) o necesitan un modelo que no rechace tareas legítimas. Un script revisa tu máquina e indica el mejor modelo normal y el mejor sin censura que caben en ella. Otro mide la velocidad y comprueba que el puerto esté cerrado. Para usarlo desde cualquier lugar, el kit conecta tus dispositivos por una red privada (Tailscale). Necesitas Python 3.10+, Ollama y, para usarlo fuera de casa, una cuenta gratuita de Tailscale.</p>
+</div></section>
+
+<section id="video"><div class="wrap">
+  <span class="chip">Video</span>
+  <h2>Míralo en 3 minutos</h2>
+  <p class="sub">Los tres niveles explicados, con los números medidos en la prueba (video en portugués).</p>
+  <div style="position:relative;width:100%;max-width:900px;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000">
+    <iframe src="https://www.youtube-nocookie.com/embed/2DQnTjJ4TcU" title="Video: IA privada en 3 niveles" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+  </div>
+  <p style="margin-top:14px">📱 <a href="https://youtube.com/shorts/aXAuSeOJXmo" target="_blank" rel="noopener">Versión vertical (celular)</a></p>
+</div></section>
+
+<section id="simples"><div class="wrap">
+  <span class="chip">Para quienes nunca lo han usado</span>
+  <h2>Tu propio ChatGPT, instalado en un ordenador tuyo</h2>
+  <p class="sub">Sin términos técnicos: qué es, para qué sirve y cómo funciona en el día a día.</p>
+  <div class="grid g2">
+    <div class="card"><h3>🌐 Cómo funciona hoy</h3><p>Cuando usas ChatGPT o Claude, lo que escribes viaja por internet hasta el ordenador de una empresa, y allí se genera la respuesta. ¿Pegaste un examen, un contrato o la hoja de cálculo de la empresa? Ese texto salió de tus manos.</p></div>
+    <div class="card"><h3>💻 La IA dentro de tu ordenador</h3><p>Hay IAs gratuitas y abiertas que puedes descargar como un programa. <b>Ollama</b> es el programa que hace que funcionen. Una vez descargada, la IA responde incluso sin internet, y nada de lo que preguntas sale de tu ordenador.</p></div>
+    <div class="card"><h3>🔓 “Sin censura”</h3><p>Es una versión de la misma IA que no se niega a responder. Por ejemplo: quieres entender un ataque a tu propio sitio web y la IA común dice «no puedo ayudar». Como responde a casi todo, la responsabilidad pasa a ser tuya (consulta <a href="#seguranca">Seguridad</a>).</p></div>
+    <div class="card"><h3>📱 En el móvil, desde cualquier lugar</h3><p><b>Tailscale</b> crea un túnel secreto entre tu móvil y el ordenador de tu casa. Preguntas desde el móvil, en la calle, y quien responde es el ordenador de casa. Nadie de fuera puede ver ese túnel.</p></div>
+  </div>
+  <div class="card" style="margin-top:18px"><h3>🖥️ ¿Y si no dejo el ordenador encendido?</h3><p>Puedes alquilar un ordenador que está en un centro de datos y permanece encendido las 24 horas: eso se llama <b>VPS</b>. No tiene tarjeta gráfica, así que ejecuta una IA más pequeña, pero a una velocidad buena para leer (alrededor de 13 partes de palabra por segundo, según nuestras mediciones). El túnel de Tailscale funciona igual: el móvil se comunica con la VPS y el puerto sigue cerrado para el resto de internet.</p></div>
+</div></section>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">Qué es</span>
+  <h2>Tres niveles, del más fácil al más libre</h2>
+  <p class="sub">No necesitas ningún “sistema operativo de agentes” de pago. Son tres componentes abiertos y algunos scripts que comprueban que todo funciona.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-es.jpg" alt="Los seis bloques del kit: cuadrante, modelo adecuado, local, Tailscale, VPS sin GPU y voz" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="grid g3">
+    <div class="card"><h3>☁️ 1 · Por API</h3><p>Un modelo sin censura en el servidor de otra empresa. Rápido de empezar, pero la solicitud sale de tu máquina. Está en el kit hermano <a href="https://inematds.github.io/ia-sem-censura-defensiva/guia/es/" target="_blank" rel="noopener">IA sin censura, de la manera correcta</a>.</p></div>
+    <div class="card"><h3>💻 2 · Local</h3><p><b>Ollama</b> (programa gratuito que ejecuta modelos en la computadora) con el modelo que <code>escolhe_modelo.py</code> recomiende para tu memoria. Nada sale de la máquina.</p></div>
+    <div class="card"><h3>📱 3 · Siempre conectada</h3><p><b>Tailscale</b> crea una red privada entre tus dispositivos: el celular usa la tarjeta gráfica de casa (Camino A) o un modelo pequeño en una VPS (Camino B).</p></div>
+  </div>
+</div></section>
+
+<section id="quadrante"><div class="wrap">
+  <span class="chip">Cuadrante</span>
+  <h2>Dos preguntas deciden dónde se ejecuta la IA</h2>
+  <p class="sub">¿El dato NO puede salir de tu máquina? ¿El modelo normal rechaza lo que necesitas hacer? En el script, <code>--dado-sensivel sim</code> significa “no puede salir”. Pasa a “sin censura” solo cuando el modelo normal rechace una tarea legítima.</p>
+  <div class="quad">
+    <div class="h c"></div><div class="h c">El modelo normal resuelve</div><div class="h c">El modelo normal rechaza</div>
+    <div class="h r">El dato puede salir</div>
+    <div class="q"><b>Nube normal</b><span>El asistente que ya tienes contratado. Publicación, resumen de un artículo público, código abierto.</span></div>
+    <div class="q"><b>Nube sin censura</b><span>API o GPU alquilada. Investigación de seguridad en tu laboratorio, aceptando que la solicitud pase por un proveedor.</span></div>
+    <div class="h r">El dato NO puede salir</div>
+    <div class="q kit"><b>Local normal</b><span>Exámenes, contratos de clientes, finanzas, registros de la empresa.</span></div>
+    <div class="q kit"><b>Local sin censura</b><span>El registro de un ataque a tu servidor con los comandos reales; preguntas médicas o legales delicadas.</span></div>
+  </div>
+<pre><span class="k">python3 kit/scripts/quadrante.py --dado-sensivel sim --recusa nao</span>
+<span class="c">LOCAL NORMAL
+  quando: Exames, contratos, financas, logs da empresa: nada sai do computador.
+  como:   Nivel 2 deste kit: escolhe_modelo.py -> modelo normal.</span></pre>
+</div></section>
+
+<section id="numeros"><div class="wrap">
+  <span class="chip">Números medidos · 08/11/2026</span>
+  <h2>Cuánto afecta la red privada a la velocidad: nada</h2>
+  <p class="sub">Computadora de casa: NVIDIA DGX Spark (128 GB de memoria unificada), no una laptop común. Allí el selector recomendaría el 122B; medimos el 27B porque es el modelo que cabe en máquinas de 24 a 99 GB, las más comunes. Para una laptop sin tarjeta gráfica, la referencia más cercana son las barras grises de la VPS. Misma pregunta, respuesta de hasta 160 tokens (fragmentos de palabras), medidos con <code>checa_local.py</code>. Una lectura cómoda está cerca de 10 tokens/s. Los archivos de cada medición están en <code>kit/verificacao/</code>.</p>
+  <div class="bars">
+    <div class="bar"><div class="l">GPU en casa, local<small>Qwen 3.8 27B sin censura</small></div><div class="t"><i style="width:100%"></i></div><div class="v">17,8 tok/s</div></div>
+    <div class="bar"><div class="l">Camino A · VPS que llama a la GPU de casa por Tailscale<small>Qwen 3.8 27B sin censura</small></div><div class="t"><i style="width:99%"></i></div><div class="v">17,6 tok/s</div></div>
+    <div class="bar"><div class="l">GPU en casa, local<small>Qwen 3.8 27B normal</small></div><div class="t"><i style="width:86.5%"></i></div><div class="v">15,4 tok/s</div></div>
+    <div class="bar"><div class="l">Camino B · VPS solo con procesador<small>Qwen 3.5 4B sin censura</small></div><div class="t"><i class="cpu" style="width:76.4%"></i></div><div class="v">13,6 tok/s</div></div>
+    <div class="bar"><div class="l">Camino B por la red · GPU de casa que llama a la VPS<small>Qwen 3.5 4B sin censura</small></div><div class="t"><i class="cpu" style="width:71.9%"></i></div><div class="v">12,8 tok/s</div></div>
+    <div class="bar"><div class="l">Camino B · VPS solo con procesador<small>Qwen 3.5 4B normal</small></div><div class="t"><i class="cpu" style="width:70.8%"></i></div><div class="v">12,6 tok/s</div></div>
+    <div class="bar"><div class="l">Camino B · VPS solo con procesador<small>Qwen 3.5 9B sin censura</small></div><div class="t"><i class="cpu" style="width:47.8%"></i></div><div class="v">8,5 tok/s</div></div>
+  </div>
+  <div class="legend"><span><i style="background:var(--amb)"></i>modelo 27B en la tarjeta gráfica (128 GB de memoria unificada)</span><span><i style="background:var(--mut)"></i>modelo 4B–9B en una VPS de 4 vCPU / 16 GB, sin tarjeta gráfica</span></div>
+  <div class="grid g3" style="margin-top:26px">
+    <div class="card"><h3>📶 La red no afecta</h3><p>La GPU de casa respondió a 17,8 tokens/s en la propia máquina y a 17,6 por la red de Tailscale, en el puerto y con el comando que enseña esta guía.</p></div>
+    <div class="card"><h3>⏳ La primera pregunta tarda</h3><p>Cargar el modelo tomó de 16 a 47 s en la VPS. Después permanece 5 minutos en la memoria y responde directamente.</p></div>
+    <div class="card"><h3>🔓 Sin censura no es más lento</h3><p>El modelo sin censura y el normal del mismo tamaño quedaron en el mismo rango de velocidad.</p></div>
+  </div>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Requisitos</span>
+  <h2>Qué necesitas</h2>
+  <p class="sub">Todo es gratuito, excepto la VPS del Camino B, si eliges esa opción.</p>
+  <div class="grid g3">
+    <div class="card"><h3>Python 3.10+ y git</h3><p>Los scripts solo usan la biblioteca estándar. Mac y Linux ya los incluyen; en Windows, instálalos desde python.org y git-scm.com. ¿No tienes git? Descarga el <a href="https://github.com/inematds/ia-privada-3-niveis/archive/refs/heads/main.zip">ZIP del kit (en portugués)</a>.</p><pre><span class="k">python3 --version
+git --version</span></pre></div>
+    <div class="card"><h3>Ollama</h3><p>Ejecuta los modelos. En Linux, usa el comando de abajo; en Mac y Windows, el instalador de ollama.com/download.</p><pre><span class="k">curl -fsSL https://ollama.com/install.sh | sh</span></pre></div>
+    <div class="card"><h3>Tailscale (nivel 3)</h3><p>Red privada entre tus dispositivos, gratis para uso personal. Instálalo en casa y en el celular, con la misma cuenta.</p><pre><span class="k">curl -fsSL https://tailscale.com/install.sh | sh</span></pre></div>
+  </div>
+</div></section>
+
+<section id="termos"><div class="wrap">
+  <span class="chip">Palabras de la guía</span>
+  <h2>Los términos de la guía, una frase cada uno</h2>
+  <div class="grid g4" style="margin-top:18px">
+    <div class="card"><h3>Puerto 11434</h3><p>La “ventana” por donde los programas se comunican con Ollama en la computadora.</p></div>
+    <div class="card"><h3>loopback / 127.0.0.1</h3><p>Solo la propia computadora puede verlo. Es el estado seguro.</p></div>
+    <div class="card"><h3>Tailscale / tailnet</h3><p>Red privada solo entre tus dispositivos. “tailnet only” = solo ellos pueden verlo.</p></div>
+    <div class="card"><h3>funnel</h3><p>Opción de Tailscale que abre el acceso a todo internet. No la uses con Ollama.</p></div>
+    <div class="card"><h3>VPS / vCPU</h3><p>Computadora alquilada en un centro de datos, encendida las 24 h. vCPU = núcleo de su procesador.</p></div>
+    <div class="card"><h3>API</h3><p>Usar un modelo que se ejecuta en el servidor de otra empresa, pagando por uso.</p></div>
+    <div class="card"><h3>Memoria unificada</h3><p>Mac (chips M) y algunas máquinas con GPU: la misma memoria sirve al procesador y a la tarjeta gráfica.</p></div>
+    <div class="card"><h3>OLLAMA_HOST=0.0.0.0</h3><p>Configuración que abre Ollama a cualquier red. El kit lo marca como “abierto”.</p></div>
+    <div class="card"><h3>abliterated / huihui_ai</h3><p>“Abliterated” = versión sin censura de un modelo abierto. huihui_ai publica estas versiones en la biblioteca de Ollama.</p></div>
+    <div class="card"><h3>4B, 9B, 27B</h3><p>Miles de millones de parámetros: el tamaño del modelo. Uno más grande responde mejor y necesita más memoria.</p></div>
+    <div class="card"><h3>35b-a3b (rápido)</h3><p>Modelo grande que usa solo 3B por palabra (“MoE”): ocupa memoria como uno grande y responde casi a la velocidad de uno pequeño.</p></div>
+    <div class="card"><h3>Qwen</h3><p>Familia de modelos abiertos de Alibaba. El kit usa las versiones 3.5, 3.6 y 3.8.</p></div>
+    <div class="card"><h3>Ubuntu / ssh / root</h3><p>Ubuntu = Linux de la VPS. ssh = acceder a su terminal desde la tuya (la IP aparece en el panel del proveedor). root = administrador de la VPS.</p></div>
+    <div class="card"><h3>GPU / sudo</h3><p>GPU = tarjeta gráfica. sudo = ejecutar un comando como administrador en Linux/Mac (te pide tu contraseña).</p></div>
+  </div>
+  <div class="warn"><b>Windows:</b> usa <code>python</code> en lugar de <code>python3</code>. Los scripts funcionan, pero la comprobación del puerto de <code>checa_local.py</code> solo está disponible para Linux y Mac. Los Caminos A y B usan comandos de Linux: en Windows, ejecútalos en la máquina Linux (o en la VPS) y usa Windows solo como dispositivo de acceso.</div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">Guía de uso · paso a paso</span>
+  <h2>Desde cero hasta la IA en tu celular</h2>
+  <p class="sub">Ejecuta los comandos en la carpeta del proyecto. ¿Prefieres que un asistente lo haga por ti? Cada paso tiene un prompt listo en <code>kit/prompts/</code>.</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Descarga el kit y ejecuta las pruebas</h3>
+    <p>Las pruebas no usan internet ni Ollama: solo comprueban que los scripts estén correctos. Si no tienes git, descarga el ZIP (requisitos) y abre la terminal dentro de la carpeta.</p>
+<pre><span class="k">git clone https://github.com/inematds/ia-privada-3-niveis.git
+cd ia-privada-3-niveis
+python3 -m unittest discover -s kit/testes -v</span>  <span class="c"># termina con OK</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Encuentra el modelo adecuado para tu máquina</h3>
+    <p>El script lee la memoria (tarjeta gráfica, memoria unificada del Mac o RAM) y el disco. Muestra dos modelos y el comando para descargarlos, pero no descarga nada automáticamente.</p><p class="nota-saida">Los scripts del kit muestran sus mensajes en portugués; el significado de cada línea está explicado en esta página.</p>
+<pre><span class="k">python3 kit/scripts/escolhe_modelo.py</span>
+<span class="c">Memoria: 16.0 GB (RAM / memoria unificada); util para modelo: 14.0 GB
+Disco livre: 80.0 GB
+
+Melhor local (normal):       Qwen 3.5 9B  ->  ollama pull qwen3.5:9b  (6.6 GB)
+  uso: bom equilibrio para 16 GB
+Melhor local (sem censura):  Qwen 3.5 9B  ->  ollama pull huihui_ai/qwen3.5-abliterated:9b  (6.6 GB)</span></pre>
+    <div class="tbl"><table>
+      <tr><th>Memoria</th><th>Normal</th><th>Sin censura</th><th>Descarga</th></tr>
+      <tr><td>4–5 GB (solo prueba)</td><td><code>qwen3.5:0.8b</code> / <code>qwen3.5:2b-q4_K_M</code></td><td><code>huihui_ai/qwen3.5-abliterated:0.8B</code> / <code>:2B</code></td><td>1–1,9 GB</td></tr>
+      <tr><td>6–9 GB</td><td><code>qwen3.5:4b</code></td><td><code>huihui_ai/qwen3.5-abliterated:4B</code></td><td>3,3 GB</td></tr>
+      <tr><td>10–23 GB</td><td><code>qwen3.5:9b</code></td><td><code>huihui_ai/qwen3.5-abliterated:9b</code></td><td>6,6 GB</td></tr>
+      <tr><td>24–99 GB</td><td><code>qwen3.8:27b</code></td><td><code>huihui_ai/Qwen3.8-abliterated:27b</code></td><td>18 GB</td></tr>
+      <tr><td>31 GB o más (alternativa rápida)</td><td><code>qwen3.6:35b-a3b</code></td><td><code>huihui_ai/Qwen3.6-abliterated:35b-a3b</code></td><td>23–24 GB</td></tr>
+      <tr><td>100 GB o más</td><td><code>qwen3.5:122b</code></td><td><code>huihui_ai/qwen3.5-abliterated:122B</code></td><td>81 GB</td></tr>
+      
+    </table></div>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Descarga y mide</h3>
+    <p><code>checa_local.py</code> hace una pregunta, mide la velocidad, comprueba el puerto y guarda un archivo nuevo con el nombre del modelo en <code>kit/verificacao/</code>, junto a las mediciones de esta guía. La línea del puerto debe decir <code>loopback</code> (en Windows no aparece; es normal). Si aparece “Ollama no respondió” (o Ollama não respondeu), abre la aplicación de Ollama o ejecuta <code>ollama serve</code>.</p>
+<pre><span class="k">ollama pull huihui_ai/qwen3.5-abliterated:9b
+python3 kit/scripts/checa_local.py --modelo huihui_ai/qwen3.5-abliterated:9b</span>
+<span class="c"># Porta 11434 nesta maquina: loopback ['127.0.0.1']
+# Velocidade: ... tokens/s</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Conversa</h3>
+    <p>Para salir, escribe <code>/bye</code>. En la terminal, pega el texto del documento en la pregunta. ¿Prefieres una ventana? La aplicación de Ollama (Mac y Windows) conversa con los modelos descargados y permite arrastrar archivos. Los modelos normal y sin censura quedan descargados uno junto al otro: para cambiar, solo tienes que indicar otro nombre.</p>
+<pre><span class="k">ollama run huihui_ai/qwen3.5-abliterated:9b</span></pre>
+    <p>Documento en PDF: conviértelo a texto y envíalo junto con la solicitud. <code>pdftotext</code> viene en el paquete <code>poppler-utils</code> (Linux) o <code>brew install poppler</code> (Mac). En Windows, lo más fácil es usar la aplicación de Ollama: elige el modelo y arrastra el archivo a la conversación; todo se ejecuta en tu computadora. Un documento muy largo (decenas de páginas) puede superar el límite de texto del modelo: divídelo en partes.</p>
+<pre><span class="k">pdftotext contrato.pdf contrato.txt
+cat contrato.txt | ollama run huihui_ai/qwen3.5-abliterated:9b "Resume en 2 líneas: monto, vencimiento y multa."</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Camino A: usa la tarjeta gráfica de casa desde cualquier lugar</h3>
+    <p>Primero, inicia sesión en tu cuenta de Tailscale desde esta máquina: en Linux, <code>sudo tailscale up</code> muestra un enlace para abrir en el navegador; en Mac y Windows, la aplicación te pide iniciar sesión al abrirse. Después, publica Ollama <b>solo</b> en tu red privada. El estado debe decir “tailnet only”. Si aparece “Access denied”, ejecuta una vez <code>sudo tailscale set --operator=$USER</code>.</p>
+<pre><span class="k">sudo tailscale up
+tailscale serve --bg --tcp 11434 tcp://127.0.0.1:11434
+tailscale serve status</span>   <span class="c"># debe mostrar "tailnet only"</span>
+<span class="k">tailscale ip -4</span>          <span class="c"># la dirección 100.x.y.z para usar en el celular</span></pre>
+    <p>En el celular, instala la aplicación de Tailscale e inicia sesión con la misma cuenta. Después instala una aplicación que se comunique con Ollama, como <a href="https://github.com/JHubi1/ollama-app" target="_blank" rel="noopener">Ollama App</a> (Android) o <a href="https://github.com/gluonfield/enchanted" target="_blank" rel="noopener">Enchanted</a> (iPhone), e indica como dirección del servidor <code>http://100.x.y.z:11434</code>. En la laptop, esa misma dirección sirve para <code>checa_local.py</code>:</p>
+<pre><span class="k">python3 kit/scripts/checa_local.py --base-url http://100.x.y.z:11434 --modelo huihui_ai/Qwen3.8-abliterated:27b --nome casa-pelo-tailscale</span></pre>
+    <p>Para apagarlo: <code>tailscale serve --tcp 11434 off</code>.</p>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Camino B: un modelo pequeño disponible las 24 h en una VPS</h3>
+    <p>Para quienes no dejan la computadora encendida. La VPS común no tiene tarjeta gráfica: hasta 9B, a la velocidad del gráfico anterior. Contrata una VPS Ubuntu con 8 GB o más y abre su terminal (mediante <code>ssh root@&lt;IP&gt;</code> o la terminal web del proveedor). Como root, ejecuta:</p>
+<pre><span class="k">curl -fsSL https://ollama.com/install.sh | sh
+ss -ltn | grep 11434</span>          <span class="c"># solo 127.0.0.1:11434</span>
+<span class="k">curl -fsSL https://tailscale.com/install.sh | sh
+tailscale up</span>                  <span class="c"># abre en el navegador el enlace que aparezca e inicia sesión</span>
+<span class="k">tailscale serve --bg --tcp 11434 tcp://127.0.0.1:11434
+ollama pull huihui_ai/qwen3.5-abliterated:4B
+git clone https://github.com/inematds/ia-privada-3-niveis.git
+cd ia-privada-3-niveis
+python3 kit/scripts/checa_local.py --so-porta</span></pre>
+    <p><b>Prueba de que quedó cerrado:</b> desde tu computadora, <code>http://&lt;IP pública de la VPS&gt;:11434</code> debe fallar y <code>http://&lt;IP Tailscale de la VPS&gt;:11434</code> debe responder. Con <code>tailscale serve</code> activado, <code>--so-porta</code> en la VPS muestra <code>tailscale</code>; desactivado, muestra <code>loopback</code>. Ambos son seguros; <code>aberto</code> nunca lo es. Si no inicias sesión como root, agrega <code>sudo</code> antes de <code>tailscale up</code> y <code>tailscale serve</code>.</p>
+  </div></div>
+
+  <div class="step"><div class="b">7</div><div>
+    <h3>Opcional: habla con ella</h3>
+    <p>El kit gratuito <a href="https://inematds.github.io/jarvis-local/guia/es/" target="_blank" rel="noopener">Jarvis Local</a> ya permite conversar por voz 100 % localmente. Agrega a su estante de cerebros las entradas <code>sem_censura</code> y <code>casa</code> de <code>kit/config/jarvis-cerebros.exemplo.json</code> y di “cambia al cerebro sin censura”. La voz necesita una tarjeta gráfica: en la VPS del Camino B, solo texto.</p>
+  </div></div>
+
+  <div class="tbl" style="margin-top:10px"><table>
+    <tr><th>Prompt listo</th><th>Qué hace el asistente</th></tr>
+    <tr><td><a href="https://github.com/inematds/ia-privada-3-niveis/blob/main/kit/prompts/01-instalar-e-escolher.md" target="_blank" rel="noopener">01 · Instalar y elegir (en portugués)</a></td><td>Instala Ollama con tu aprobación, ejecuta el selector, descarga lo que elijas y mide.</td></tr>
+    <tr><td><a href="https://github.com/inematds/ia-privada-3-niveis/blob/main/kit/prompts/02-casa-pelo-tailscale.md" target="_blank" rel="noopener">02 · Casa por Tailscale (en portugués)</a></td><td>Camino A, comprueba “tailnet only” y nunca usa funnel.</td></tr>
+    <tr><td><a href="https://github.com/inematds/ia-privada-3-niveis/blob/main/kit/prompts/03-vps-sempre-ligada.md" target="_blank" rel="noopener">03 · VPS siempre conectada (en portugués)</a></td><td>Camino B, con la prueba de que el puerto público quedó cerrado.</td></tr>
+  </table></div>
+</div></section>
+
+<section id="seguranca"><div class="wrap">
+  <span class="chip">Seguridad</span>
+  <h2>Sin censura significa que tú asumes la responsabilidad</h2>
+  <p class="sub">Un modelo <i>abliterated</i> es un modelo abierto al que le quitaron el reflejo de rechazar. Responde casi todo, por eso las reglas de abajo hacen de freno.</p>
+  <ul class="rules">
+    <li><b>Tus datos, tus sistemas.</b> Prueba la seguridad solo en lo que te pertenece o en lo que el dueño autorizó por escrito.</li>
+    <li><b>Privado no es anónimo.</b> Ejecutar localmente oculta la solicitud a las empresas de IA; no cambia lo que es delito.</li>
+    <li><b>Las marcas ajenas no se copian.</b> Recrear la función de una aplicación para uso propio es estudio; copiar el nombre, el logo y las pantallas para distribuirlos es una infracción.</li>
+    <li><b>Sin rechazo también se equivoca.</b> En salud, derecho y dinero, consulta a un profesional antes de actuar.</li>
+    <li><b>El puerto nunca queda abierto.</b> Ollama no tiene contraseña. Nada de <code>OLLAMA_HOST=0.0.0.0</code>, puertos abiertos en el router ni <code>tailscale funnel</code>. <code>checa_local.py --so-porta</code> marca <code>aberto</code> y termina con un error.</li>
+    <li><b>Conversa antes de darle herramientas.</b> Un modelo descargado es código de terceros: primero pruébalo conversando y solo después permítele leer archivos o ejecutar comandos.</li>
+    <li><b>La computadora de un niño</b> no debe tener un modelo sin censura.</li>
+  </ul>
+  <div class="warn">Reglas completas en <a href="https://github.com/inematds/ia-privada-3-niveis/blob/main/kit/USO-RESPONSAVEL.md" target="_blank" rel="noopener">kit/USO-RESPONSAVEL.md (en portugués)</a>.</div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Ollama</div><div class="pill">Tailscale</div><div class="pill">Python 3</div><div class="pill">Qwen 3.5 · 3.8</div>
+    <p style="margin-top:18px">IA privada en 3 niveles · kit gratuito, licencia MIT ·
+      <a href="https://github.com/inematds/ia-privada-3-niveis">inematds/ia-privada-3-niveis</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='ia-privada-3-niveis-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    try{ if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; } }catch(e){}
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      try{ localStorage.setItem(KEY, light?'light':'dark'); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>
