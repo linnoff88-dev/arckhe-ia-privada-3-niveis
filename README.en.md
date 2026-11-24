@@ -1,25 +1,25 @@
 # Private AI in 3 Levels — your AI, on your machine, running all the time
 
-[![Private AI in 3 Levels](guia/assets/banner-en.jpg)](https://inematds.github.io/ia-privada-3-niveis/guia/en/)
+[![Private AI in 3 Levels](guia/assets/banner-en.jpg)](https://linnoff88-dev.github.io/
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
 ## What it is
 
-A free INEMA kit for running an AI model that **doesn’t send anything outside**—and that you can use from your
+A free ARCKHÉ kit for running an AI model that **doesn’t send anything outside**—and that you can use from your
 phone, anywhere. It chooses the right model for your machine (regular or uncensored), measures its speed,
 checks that the port is closed, and shows two ways to keep the AI running all the time: your home GPU through
 Tailscale, or a small model on a VPS. Everything is measured for real, with the numbers in the guide.
 
 ## 📖 User guide
 
-**https://inematds.github.io/ia-privada-3-niveis/guia/en/**
+**https://linnoff88-dev.github.io/
 
 ## The 3 levels
 
 | Level | Where the model runs | What you pay | Where to find it |
 |---|---|---|---|
-| 1 · API | another company’s server | per use | kit [ia-sem-censura-defensiva](https://inematds.github.io/ia-sem-censura-defensiva/guia/en/) |
+| 1 · API | another company’s server | per use | kit [ia-sem-censura-defensiva](https://linnoff88-dev.github.io/ |
 | 2 · Local | on your computer | electricity and disk space | [`kit/guias/2-local.md`](kit/guias/2-local.md) (in Portuguese) |
 | 3 · Always on | home GPU through Tailscale (A) or a GPU-free VPS (B) | nothing (A) or the VPS (B) | [`kit/guias/3-sempre-ligada.md`](kit/guias/3-sempre-ligada.md) (in Portuguese) |
 | + Voice | Jarvis Local with an uncensored brain | nothing | [`kit/guias/4-voz-jarvis.md`](kit/guias/4-voz-jarvis.md) (in Portuguese) |

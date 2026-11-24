@@ -1,12 +1,12 @@
 # IA privada en 3 niveles — tu IA, en tu máquina, conectada todo el tiempo
 
-[![IA privada en 3 niveles](guia/assets/banner-es.jpg)](https://inematds.github.io/ia-privada-3-niveis/guia/es/)
+[![IA privada en 3 niveles](guia/assets/banner-es.jpg)](https://linnoff88-dev.github.io/
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
 ## Qué es
 
-Kit gratuito de INEMA para tener un modelo de IA que **no envía nada fuera** y que puedes usar desde el
+Kit gratuito de ARCKHÉ para tener un modelo de IA que **no envía nada fuera** y que puedes usar desde el
 celular, desde cualquier lugar. Elige el modelo adecuado para tu máquina (normal o sin censura), mide la
 velocidad, comprueba que el puerto esté cerrado y muestra dos formas de mantener la IA siempre conectada:
 la tarjeta gráfica de casa por Tailscale o un modelo pequeño en una VPS. Todo medido de verdad, con las
@@ -14,13 +14,13 @@ cifras en la guía.
 
 ## 📖 Guía de uso
 
-**https://inematds.github.io/ia-privada-3-niveis/guia/es/**
+**https://linnoff88-dev.github.io/
 
 ## Los 3 niveles
 
 | Nivel | Dónde se ejecuta el modelo | Qué pagas | Dónde está |
 |---|---|---|---|
-| 1 · API | servidor de otra empresa | por uso | kit [ia-sem-censura-defensiva](https://inematds.github.io/ia-sem-censura-defensiva/guia/es/) |
+| 1 · API | servidor de otra empresa | por uso | kit [ia-sem-censura-defensiva](https://linnoff88-dev.github.io/ |
 | 2 · Local | en tu computadora | electricidad y disco | [`kit/guias/2-local.md`](kit/guias/2-local.md) (en portugués) |
 | 3 · Siempre conectada | GPU de casa por Tailscale (A) o VPS sin GPU (B) | nada (A) o la VPS (B) | [`kit/guias/3-sempre-ligada.md`](kit/guias/3-sempre-ligada.md) (en portugués) |
 | + Voz | Jarvis Local con cerebro sin censura | nada | [`kit/guias/4-voz-jarvis.md`](kit/guias/4-voz-jarvis.md) (en portugués) |

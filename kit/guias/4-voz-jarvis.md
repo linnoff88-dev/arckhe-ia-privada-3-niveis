@@ -1,7 +1,7 @@
 # 4 · Falar com ela: o interruptor "sem censura" no Jarvis local
 
-Você não precisa de nenhum "sistema operacional de agentes" pago. O kit gratuito **Jarvis Local** do INEMA
-(https://inematds.github.io/jarvis-local/guia/) já faz conversa por voz, ouvidos e memória 100% locais, com
+Você não precisa de nenhum "sistema operacional de agentes" pago. O kit gratuito **Jarvis Local** do ARCKHÉ
+(https://linnoff88-dev.github.io/ já faz conversa por voz, ouvidos e memória 100% locais, com
 uma prateleira de "cérebros" que você troca falando. Aqui você só acrescenta dois cérebros nessa prateleira.
 
 ## O que acrescentar no `config.json` do Jarvis

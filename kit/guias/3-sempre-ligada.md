@@ -83,7 +83,7 @@ curl -fsSL https://tailscale.com/install.sh | sh
 tailscale up
 tailscale serve --bg --tcp 11434 tcp://127.0.0.1:11434
 ollama pull huihui_ai/qwen3.5-abliterated:4B
-git clone https://github.com/inematds/ia-privada-3-niveis.git
+git clone https://github.com/linnoff88-dev/ia-privada-3-niveis.git
 ```
 
 **Prova de que ficou fechado:** do seu computador, `http://<IP público da VPS>:11434` tem que **falhar**

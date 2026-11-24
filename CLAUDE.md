@@ -3,7 +3,7 @@
 Kit + guia (PT/EN/ES) de IA privada: Ollama local, seletor de modelo pelo hardware, quadrante
 local×nuvem / com×sem censura, sempre ligada pelo Tailscale (A: GPU de casa; B: VPS sem GPU).
 
-- Conta/autor: `inematds <inematds@gmail.com>`. Pages da raiz; guia em `guia/` (+ `guia/en/`, `guia/es/`).
+- Conta/autor: `linnoff88-dev <linnoff88-dev@gmail.com>`. Pages da raiz; guia em `guia/` (+ `guia/en/`, `guia/es/`).
 - Sem citar fonte (vídeo de terceiro). Sem afiliados. Sem exemplo de copiar app/marca de terceiro.
 - Ollama nunca em 0.0.0.0. Expor só por `tailscale serve` (nunca `funnel`).
 - Catálogo de modelos em `kit/modelos.json` com data de conferência; ao atualizar, rodar os testes.
