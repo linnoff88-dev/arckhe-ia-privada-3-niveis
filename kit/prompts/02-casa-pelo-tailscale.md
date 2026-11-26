@@ -7,7 +7,7 @@ Quero acessar o Ollama desta máquina pelo celular e pelo notebook, de qualquer 
 internet. Siga kit/guias/3-sempre-ligada.md, caminho A.
 
 1. Confira que o Ollama escuta só em 127.0.0.1: python3 kit/scripts/checa_local.py --so-porta deve dizer loopback.
-2. Veja se o Tailscale está instalado e logado (tailscale status). Se não, me mostre o instalador do meu
+2. Veja se o Tailscale está instalado e logado (tailscale status). Se nêo, me mostre o instalador do meu
    sistema e espere eu fazer o login no navegador.
 3. Publique o Ollama só dentro da minha rede Tailscale com:
    tailscale serve --bg --tcp 11434 tcp://127.0.0.1:11434

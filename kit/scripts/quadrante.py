@@ -32,7 +32,7 @@ def _sim(txt):
     t = (txt or "").strip().lower()
     if t in ("s", "sim", "y", "yes", "si", "1"):
         return True
-    if t in ("n", "nao", "não", "no", "0"):
+    if t in ("n", "nao", "nêo", "no", "0"):
         return False
     raise ValueError(f"responda sim ou nao: {txt!r}")
 

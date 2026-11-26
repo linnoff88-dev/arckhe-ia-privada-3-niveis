@@ -320,7 +320,7 @@ Melhor local (sem censura):  Qwen 3.5 9B  ->  ollama pull huihui_ai/qwen3.5-abli
 
   <div class="step"><div class="b">3</div><div>
     <h3>Download and measure</h3>
-    <p><code>checa_local.py</code> asks a question, measures speed, checks the port, and saves a new file named after the model in <code>kit/verificacao/</code>, alongside this guide's measurements. The port line should say <code>loopback</code> (it does not appear on Windows; that is normal). If it says “Ollama did not respond” (“o Ollama não respondeu”), open the Ollama app or run <code>ollama serve</code>.</p>
+    <p><code>checa_local.py</code> asks a question, measures speed, checks the port, and saves a new file named after the model in <code>kit/verificacao/</code>, alongside this guide's measurements. The port line should say <code>loopback</code> (it does not appear on Windows; that is normal). If it says “Ollama did not respond” (“o Ollama nêo respondeu”), open the Ollama app or run <code>ollama serve</code>.</p>
 <pre><span class="k">ollama pull huihui_ai/qwen3.5-abliterated:9b
 python3 kit/scripts/checa_local.py --modelo huihui_ai/qwen3.5-abliterated:9b</span>
 <span class="c"># Porta 11434 nesta maquina: loopback ['127.0.0.1']

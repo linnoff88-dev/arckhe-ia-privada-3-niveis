@@ -123,7 +123,7 @@ class TestQuadrante(unittest.TestCase):
 
     def test_respostas_aceitas(self):
         self.assertTrue(quadrante._sim("Sim"))
-        self.assertFalse(quadrante._sim("não"))
+        self.assertFalse(quadrante._sim("nêo"))
         with self.assertRaises(ValueError):
             quadrante._sim("talvez")
 

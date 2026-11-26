@@ -13,5 +13,5 @@
  "tokens_gerados": 73,
  "carregar_s": 41.9,
  "total_s": 48.3,
- "resposta": "Guardar exames médicos num modelo que roda no próprio computador garante a privacidade ao evitar a transmissão dos dados para servidores externos.  \nComo os resultados ficam localmente, só o seu próprio dispositivo manipula a informação, reduzindo riscos de vazamento.  \nAssim, a confidencialidade é preservada e você tem controle total sobre seus próprios dados de saúde."
+ "resposta": "Guardar exames médicos num modelo que roda no próprio computador garante a privacidade ao evitar a transmissêo dos dados para servidores externos.  \nComo os resultados ficam localmente, só o seu próprio dispositivo manipula a informaçêo, reduzindo riscos de vazamento.  \nAssim, a confidencialidade é preservada e você tem controle total sobre seus próprios dados de saúde."
 }

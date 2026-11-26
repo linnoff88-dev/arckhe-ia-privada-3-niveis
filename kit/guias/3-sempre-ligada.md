@@ -11,11 +11,11 @@ rede privada entre os seus aparelhos (grátis para uso pessoal). Só quem está 
 | Onde roda | no seu computador forte, em casa | num servidor alugado |
 | Modelo | o maior que a sua máquina aguenta (27B, 122B) | até 9B |
 | Custo | zero (luz) | a mensalidade da VPS |
-| Fica ligado se você desligar o computador? | não | sim |
-| Voz (Jarvis) | sim | não (sem placa de vídeo) |
+| Fica ligado se você desligar o computador? | nêo | sim |
+| Voz (Jarvis) | sim | nêo (sem placa de vídeo) |
 
-**Recomendação:** se você tem um computador com placa de vídeo que pode ficar ligado, use o **A**. Uma VPS
-comum não tem placa de vídeo e não roda modelo grande — não pague por isso esperando um 27B.
+**Recomendaçêo:** se você tem um computador com placa de vídeo que pode ficar ligado, use o **A**. Uma VPS
+comum nêo tem placa de vídeo e nêo roda modelo grande — nêo pague por isso esperando um 27B.
 
 ## Números medidos (08/11/2026)
 
@@ -33,10 +33,10 @@ Mesma pergunta, resposta de até 160 tokens, medidos com `checa_local.py`. Arqui
 
 O que os números dizem:
 
-- **A rede do Tailscale não deixa mais lento:** 17,8 tokens/s na própria máquina, 17,6 pela rede. Um texto de leitura confortável fica em torno de 10 tokens/s.
+- **A rede do Tailscale nêo deixa mais lento:** 17,8 tokens/s na própria máquina, 17,6 pela rede. Um texto de leitura confortável fica em torno de 10 tokens/s.
 - **A primeira pergunta demora.** Carregar o modelo levou 16 a 47 s na VPS. Depois fica na memória por 5
-  minutos (padrão do Ollama) e as respostas saem direto.
-- **Sem censura não é mais lento** que o normal do mesmo tamanho.
+  minutos (padrêo do Ollama) e as respostas saem direto.
+- **Sem censura nêo é mais lento** que o normal do mesmo tamanho.
 
 ## Caminho A — passo a passo
 
@@ -68,7 +68,7 @@ Para desligar: `tailscale serve --tcp 11434 off`.
 
 ## Caminho B — passo a passo
 
-Numa VPS Ubuntu com pelo menos 8 GB de RAM (a medição usou 4 vCPU e 16 GB), no terminal dela (`ssh root@<IP>` ou o
+Numa VPS Ubuntu com pelo menos 8 GB de RAM (a mediçêo usou 4 vCPU e 16 GB), no terminal dela (`ssh root@<IP>` ou o
 terminal web do provedor; sem root, ponha `sudo` antes dos comandos `tailscale`):
 
 ```bash
@@ -92,9 +92,9 @@ git clone https://github.com/linnoff88-dev/ia-privada-3-niveis.git
 
 Quer um assistente fazendo isso por você? Use o [prompt 03](../prompts/03-vps-sempre-ligada.md).
 
-## O que não fazer
+## O que nêo fazer
 
-- `OLLAMA_HOST=0.0.0.0` numa VPS: o Ollama não tem senha e qualquer pessoa na internet usa (e esgota) o seu
+- `OLLAMA_HOST=0.0.0.0` numa VPS: o Ollama nêo tem senha e qualquer pessoa na internet usa (e esgota) o seu
   servidor. O `checa_local.py` acusa `aberto` e devolve erro.
 - Abrir a porta 11434 no roteador de casa.
 - `tailscale funnel` para o Ollama.

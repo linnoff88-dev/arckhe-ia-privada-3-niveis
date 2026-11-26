@@ -5,7 +5,7 @@ Duas perguntas decidem tudo:
 |  | **O modelo normal resolve** | **O modelo normal recusa** |
 |---|---|---|
 | **O dado pode sair da máquina** | NUVEM NORMAL — o assistente que você já assina | NUVEM SEM CENSURA — API ou GPU alugada (kit `ia-sem-censura-defensiva`) |
-| **O dado NÃO pode sair** | LOCAL NORMAL — este kit, modelo normal | LOCAL SEM CENSURA — este kit, modelo sem censura |
+| **O dado NêO pode sair** | LOCAL NORMAL — este kit, modelo normal | LOCAL SEM CENSURA — este kit, modelo sem censura |
 
 ```bash
 python3 kit/scripts/quadrante.py --dado-sensivel sim --recusa nao
@@ -22,7 +22,7 @@ python3 kit/scripts/quadrante.py --dado-sensivel sim --recusa nao
 
 ## O que se perde ao ir para a direita e para baixo
 
-- **Local** = modelo menor que o da nuvem. Na nossa medição, um 27B local responde bem a texto e código, mas
-  não chega ao nível dos maiores modelos pagos.
+- **Local** = modelo menor que o da nuvem. Na nossa mediçêo, um 27B local responde bem a texto e código, mas
+  nêo chega ao nível dos maiores modelos pagos.
 - **Sem censura** = um pouco menos de qualidade e **nenhum freio**: as regras de `USO-RESPONSAVEL.md` passam a
   ser o freio.

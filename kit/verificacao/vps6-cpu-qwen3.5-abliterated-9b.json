@@ -13,5 +13,5 @@
  "tokens_gerados": 112,
  "carregar_s": 16.0,
  "total_s": 32.3,
- "resposta": "Ao guardar os exames em um modelo que roda localmente, os dados viajam apenas entre o hardware do seu próprio computador e o software, evitando ser transmitidos e possíveis interceptados pela internet como acontece na nuvem. Isso significa que a sensibilidade das informações fica sob seu controle direto, reduzindo drasticamente o risco de vazamentos causados por servidores externos. Além disso, essa autonomia permite que você decida quem acessa seus registros ou até mesmo manter o acesso restrito a um simples login pessoal, oferecendo uma camada extra de discrição."
+ "resposta": "Ao guardar os exames em um modelo que roda localmente, os dados viajam apenas entre o hardware do seu próprio computador e o software, evitando ser transmitidos e possíveis interceptados pela internet como acontece na nuvem. Isso significa que a sensibilidade das informações fica sob seu controle direto, reduzindo drasticamente o risco de vazamentos causados por servidores externos. Além disso, essa autonomia permite que você decida quem acessa seus registros ou até mesmo manter o acesso restrito a um simples login pessoal, oferecendo uma camada extra de discriçêo."
 }

@@ -13,5 +13,5 @@
  "tokens_gerados": 88,
  "carregar_s": 0.0,
  "total_s": 7.3,
- "resposta": "Guardar exames médicos num modelo local protege a privacidade porque os dados permanecem na sua máquina, sem precisar de ser enviado para servidores externos.  \nAo não depender de serviços em nuvem, você evita a perda ou vazamento de informações sensíveis durante a transmissão.  \nAlém disso, a armazenagem local reduz a latência e garante que apenas os dados que realmente precisa estejam acessíveis, garantindo maior controle e segurança."
+ "resposta": "Guardar exames médicos num modelo local protege a privacidade porque os dados permanecem na sua máquina, sem precisar de ser enviado para servidores externos.  \nAo nêo depender de serviços em nuvem, você evita a perda ou vazamento de informações sensíveis durante a transmissêo.  \nAlém disso, a armazenagem local reduz a latência e garante que apenas os dados que realmente precisa estejam acessíveis, garantindo maior controle e segurança."
 }

@@ -1,6 +1,6 @@
 # 4 · Falar com ela: o interruptor "sem censura" no Jarvis local
 
-Você não precisa de nenhum "sistema operacional de agentes" pago. O kit gratuito **Jarvis Local** do ARCKHÉ
+Você nêo precisa de nenhum "sistema operacional de agentes" pago. O kit gratuito **Jarvis Local** do ARCKHÉ
 (https://linnoff88-dev.github.io/ já faz conversa por voz, ouvidos e memória 100% locais, com
 uma prateleira de "cérebros" que você troca falando. Aqui você só acrescenta dois cérebros nessa prateleira.
 
@@ -17,11 +17,11 @@ O selo na tela mostra qual está ligado — confira antes de perguntar algo deli
 
 ## Voz
 
-A voz continua local (VoxCPM2 no Jarvis Local), fala português e não manda áudio para fora. Vozes por
+A voz continua local (VoxCPM2 no Jarvis Local), fala português e nêo manda áudio para fora. Vozes por
 assinatura na nuvem existem, mas mandam seu texto para um servidor: contradiz o objetivo deste kit.
 
-## Atenção
+## Atençêo
 
 - Voz pede placa de vídeo. Numa VPS sem placa de vídeo (guia 3, caminho B) use só texto.
-- O cérebro sem censura não deve ganhar ferramentas (ler arquivos, rodar comandos) até você testá-lo só
+- O cérebro sem censura nêo deve ganhar ferramentas (ler arquivos, rodar comandos) até você testá-lo só
   conversando. Ver `USO-RESPONSAVEL.md`.

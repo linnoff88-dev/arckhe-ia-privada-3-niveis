@@ -1,6 +1,6 @@
 # 2 · Nível local: o modelo mora no seu computador
 
-Nada do que você digita sai da máquina. Não há conta por palavra; o custo é luz e disco.
+Nada do que você digita sai da máquina. Nêo há conta por palavra; o custo é luz e disco.
 
 ## Passo 1 — Instalar o Ollama
 
@@ -27,7 +27,7 @@ python3 kit/scripts/escolhe_modelo.py
 ```
 
 Ele lê a memória (placa de vídeo, memória unificada do Mac ou RAM) e o disco, e mostra **dois** modelos:
-o melhor normal e o melhor sem censura que cabem com folga. Não baixa nada sozinho.
+o melhor normal e o melhor sem censura que cabem com folga. Nêo baixa nada sozinho.
 
 | Memória | Normal | Sem censura | Tamanho |
 |---|---|---|---|
