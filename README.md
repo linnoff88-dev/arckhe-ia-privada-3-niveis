@@ -6,26 +6,26 @@
 </div>
 
 
-[![IA privada em 3 nêÂ­veis](guia/assets/banner.jpg)](https://inematds.github.io/ia-privada-3-niveis/guia/)
+[![IA privada em 3 nêÂ­veis](guia/assets/banner.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/)
 
 **ê°Å¸â¡Â§ê°Å¸â¡Â· [PortuguêÂªs](README.md) êÂ· ê°Å¸â¡Âºê°Å¸â¡Â¸ [English](README.en.md) êÂ· ê°Å¸â¡Âªê°Å¸â¡Â¸ [EspaêÂ±ol](README.es.md)**
 
 ## O que êÂ©
 
-Kit gratuito do INEMA para ter um modelo de IA que **nêÂ£o manda nada para fora** ê¢â¬â e que vocêÂª pode usar do
+Kit gratuito do ARCKHÉ para ter um modelo de IA que **nêÂ£o manda nada para fora** ê¢â¬â e que vocêÂª pode usar do
 celular, de qualquer lugar. Ele escolhe o modelo certo para a sua mêÂ¡quina (normal ou sem censura), mede a
 velocidade, confere se a porta estêÂ¡ fechada e mostra dois jeitos de deixar a IA sempre ligada: a placa de
 vêÂ­deo de casa pelo Tailscale, ou um modelo pequeno numa VPS. Tudo medido de verdade, com os nêÂºmeros no guia.
 
 ## ê°Å¸ââ Guia de uso
 
-**https://inematds.github.io/ia-privada-3-niveis/guia/**
+**https://linnoff88-dev.github.io/arckhe-/guia/**
 
 ## Os 3 nêÂ­veis
 
 | NêÂ­vel | Onde o modelo roda | O que vocêÂª paga | Onde estêÂ¡ |
 |---|---|---|---|
-| 1 êÂ· API | servidor de outra empresa | por uso | kit [ia-sem-censura-defensiva](https://inematds.github.io/ia-sem-censura-defensiva/guia/) |
+| 1 êÂ· API | servidor de outra empresa | por uso | kit [ia-sem-censura-defensiva](https://linnoff88-dev.github.io/arckhe-/guia/) |
 | 2 êÂ· Local | no seu computador | luz e disco | [`kit/guias/2-local.md`](kit/guias/2-local.md) |
 | 3 êÂ· Sempre ligada | GPU de casa pelo Tailscale (A) ou VPS sem GPU (B) | nada (A) ou a VPS (B) | [`kit/guias/3-sempre-ligada.md`](kit/guias/3-sempre-ligada.md) |
 | + Voz | Jarvis Local com cêÂ©rebro sem censura | nada | [`kit/guias/4-voz-jarvis.md`](kit/guias/4-voz-jarvis.md) |
